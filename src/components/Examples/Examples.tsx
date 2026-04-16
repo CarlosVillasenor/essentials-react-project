@@ -1,5 +1,13 @@
+/**
+ * Examples component for the React Essentials application.
+ *
+ * This component provides an interactive examples section where users can explore
+ * different React concepts through tabbed content. It displays code examples,
+ * descriptions, and titles for various React topics like components, JSX, props, and state.
+ */
+
 // Import necessary React hooks.
-import { useState } from 'react';
+import React, { useState } from 'react';
 // Import example data.
 import { EXAMPLES } from '../../data';
 // Import necessary components.
@@ -7,11 +15,27 @@ import TabButton from '../TabButton/TabButton';
 import Section from '../Section/Section';
 import Tabs from '../Tabs/Tabs';
 
-/** Examples component displaying different React topics **/
-function Examples() {
+/**
+ * Examples component displaying different React topics with interactive tabs.
+ *
+ * This component manages the display of React concept examples through a tabbed interface.
+ * Users can click on different topic tabs to view code examples, descriptions, and titles
+ * for fundamental React concepts including components, JSX, props, and state management.
+ *
+ * @returns The JSX element representing the examples section with tabs.
+ */
+function Examples(): React.JSX.Element {
+  /**
+   * State to track the currently selected topic tab.
+   * Empty string means no topic is selected.
+   */
   const [selectedTopic, setSelectedTopic] = useState('');
 
+  /**
+   * Default content to display when no topic is selected.
+   */
   let tab_content = (<p>Please select a Topic.</p>);
+
   // Update tab_content based on the selected topic.
   if (selectedTopic) {
     tab_content = (
@@ -27,13 +51,23 @@ function Examples() {
     );
   }
 
-  // Function to handle tab selection.
-  function handleSelect(selectedButton) {
+  /**
+   * Handles the selection of a topic tab.
+   *
+   * Updates the selectedTopic state with the chosen topic and logs the selection
+   * to the console for debugging purposes.
+   *
+   * @param selectedButton - The identifier of the selected topic button.
+   */
+  function handleSelect(selectedButton: string) {
     console.log(selectedButton);
     setSelectedTopic(selectedButton)
   }
 
-  // Define the tab buttons with their respective selection states and click handlers.
+  /**
+   * JSX fragment containing all the tab buttons for different React topics.
+   * Each TabButton is configured with selection state and click handlers.
+   */
   const tabButtons = (
     <>
       <TabButton
